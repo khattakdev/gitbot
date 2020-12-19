@@ -1,0 +1,14 @@
+{
+    "name": "gitli",
+    "version": "1.0.0",
+    "description": "A CLI Based Application to help you learn Git.",
+    "main": "./src/index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Arsalan Khattak",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/node": "^14.14.14"
+    }
+}
