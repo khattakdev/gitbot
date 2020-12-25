@@ -18,9 +18,11 @@ function folderChecker() {
             console.log(chalk.yellow('OOPS! Please use an empty Folder'));
             process.exit(0);
         } else {
-            console.log(chalk.green(`Good Job, Let's Get Started!`));
+            // console.log(chalk.green(`Good Job, Let's Get Started!`));
+
             definition.gitInit();
             commands.gitInit();
+            definition.gitFlow();
         }
     });
 }

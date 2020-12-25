@@ -1,4 +1,4 @@
-import { exec } from 'child_process';
+import { execSync } from 'child_process';
 
 const readline = require('readline');
 const chalk = require('chalk');
@@ -18,11 +18,8 @@ function gitInit() {
     });
 
     rl.on('close', function () {
-        exec('git init', (err, msg) => {
-            console.log(err);
-            console.log(msg);
-        });
-        console.log(chalk.green('Perfect! Initializing Local Repository...'));
+        execSync('git init', { stdio: 'ignore' });
+        console.log(chalk.green('Local Repository Initialized'));
         process.exit(0);
     });
 }
