@@ -18,6 +18,7 @@ function gitInit() {
 }
 
 function gitFlow() {
+    console.log('\n\n\n');
     console.log(chalk.bgGreen.black('GIT FLOW:'));
     console.log(
         `This folder is a local Git Repository. Whatever changes you make in this folder, Git can keep track of them. But to keep track of those changes, you need to commit the files. Let's first understand how the Git Flow works`
@@ -26,13 +27,35 @@ function gitFlow() {
     const gitFlowTable = new Table({
         head: [
             'Working Directory',
+            '--',
             'Stagging Area',
+            '--',
             'Local Repo',
+            '--',
             'Remote Repo'
         ]
     });
-    gitFlowTable.push(['--', 'git add', 'git commit', 'git push']);
+
+    gitFlowTable.push([
+        '--',
+        chalk.green('git add'),
+        '--',
+        chalk.green('git commit'),
+        '--',
+        chalk.green('git push'),
+        '--'
+    ]);
+    gitFlowTable.push([
+        '--',
+        chalk.yellow('git reset'),
+        '--',
+        chalk.yellow('git revert'),
+        '--',
+        chalk.yellow('git pull'),
+        '--'
+    ]);
     console.log(gitFlowTable.toString());
+    console.log();
     console.log(
         `Initial your file is in the working directory, this stage is like not having any version control at all. In order to keep track of all the changes, it's must to move the file to ${chalk.green(
             `"Local Repo"`
@@ -50,6 +73,26 @@ function gitFlow() {
         )} is like a waiting area of public transport, where you have to wait for the transport. Similarly, the ${chalk.green(
             `Stagging Area`
         )} is the stage where you move the file that are going to be part of the next commit.`
+    );
+    console.log();
+    console.log();
+    console.log('In this Chart, you see total of 3 rows.');
+    console.log('- First row represents the different Stages');
+    console.log(
+        `- Second row represents commands to move file(s) from one stage to another (${chalk.bold(
+            'git add'
+        )} is use to move files from ${chalk.bold(
+            'working directory'
+        )} to ${chalk.bold('stagging Area')})`
+    );
+    console.log(
+        `- Third row represents commands to move ${chalk.bold(
+            'back'
+        )} file(s) from one stage to another (${chalk.bold(
+            'git reset'
+        )} is use to move files from ${chalk.bold(
+            'stagging Area'
+        )} to ${chalk.bold('working directory')})`
     );
 }
 

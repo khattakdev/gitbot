@@ -4,7 +4,6 @@ const path = require('path');
 const process = require('process');
 const definition = require('./definition');
 const commands = require('./commands');
-
 function folderChecker() {
     const currentDir = path.resolve(process.cwd());
 

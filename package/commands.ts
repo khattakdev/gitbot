@@ -3,7 +3,7 @@ import { execSync } from 'child_process';
 const readline = require('readline');
 const chalk = require('chalk');
 const { promisify } = require('util');
-const { wrongInputCommand } = require('./utils');
+const utils = require('./utils');
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
@@ -24,30 +24,14 @@ async function gitInit() {
     if (answer == 'git init') {
         execSync('git init', { stdio: 'ignore' });
         console.log(chalk.green('Local Repository Initialized'));
+        // Clear the Screen after two seconds
+        await utils.sleep(2000);
+        console.clear();
         rl.close();
     } else {
-        wrongInputCommand();
+        utils.wrongInputCommand();
         await gitInit();
     }
 }
-
-// async function gitInits() {
-//     await rl.question('', async (cmd: string) => {
-//         if (cmd == 'git init') {
-//             execSync('git init', { stdio: 'ignore' });
-//             console.log(chalk.green('Local Repository Initialized'));
-//             rl.close();
-//         } else {
-//             wrongInputCommand();
-//             gitInit();
-//         }
-//     });
-
-//     await rl.on('close', function () {
-//         process.exit(0);
-//     });
-
-//     console.log('Hello World!!!');
-// }
 
 export { gitInit };
