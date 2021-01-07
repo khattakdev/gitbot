@@ -10,16 +10,17 @@ const rl = readline.createInterface({
 
 function gitInit() {
     rl.question('', (cmd: string) => {
-        if (cmd != 'git init') {
-            wrongInputCommand();
-        } else {
+        if (cmd == 'git init') {
+            execSync('git init', { stdio: 'ignore' });
+            console.log(chalk.green('Local Repository Initialized'));
             rl.close();
+        } else {
+            wrongInputCommand();
+            gitInit();
         }
     });
 
     rl.on('close', function () {
-        execSync('git init', { stdio: 'ignore' });
-        console.log(chalk.green('Local Repository Initialized'));
         process.exit(0);
     });
 }

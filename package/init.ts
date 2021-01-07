@@ -22,7 +22,7 @@ function folderChecker() {
 
             definition.gitInit();
             commands.gitInit();
-            definition.gitFlow();
+            // definition.gitFlow();
         }
     });
 }
