@@ -8,13 +8,13 @@ function gitInit() {
     );
     //TODO: Try using setTimeout to show messages in intervals.
     console.log(
-        'The first thing to do is to create a git reposity. Since you are already in an empty folder, we will now create convert this to a Git local repository.'
+        'The first thing to do is to create a git reposity. Since you are already in an empty folder, we will now convert this to a Git local repository.'
     );
 
-    console.log(
-        'To Create a local repository, type: ',
-        chalk.bgWhite.black('git init')
-    );
+    // console.log(
+    //     'To Create a local repository, type: ',
+    //     chalk.bgWhite.black('git init')
+    // );
 }
 
 function gitFlow() {

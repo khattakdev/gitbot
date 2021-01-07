@@ -8,7 +8,7 @@ const commands = require('./commands');
 function folderChecker() {
     const currentDir = path.resolve(process.cwd());
 
-    fs.readdir(currentDir, (err, files) => {
+    fs.readdir(currentDir, async (err, files) => {
         if (err) {
             console.log(chalk.red('OOPS! Something went Wrong'));
             console.log(err.message);
@@ -18,11 +18,9 @@ function folderChecker() {
             console.log(chalk.yellow('OOPS! Please use an empty Folder'));
             process.exit(0);
         } else {
-            // console.log(chalk.green(`Good Job, Let's Get Started!`));
-
             definition.gitInit();
-            commands.gitInit();
-            // definition.gitFlow();
+            await commands.gitInit();
+            definition.gitFlow();
         }
     });
 }
