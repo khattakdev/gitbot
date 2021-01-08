@@ -24,6 +24,7 @@ async function gitInit() {
     if (answer == 'git init') {
         execSync('git init', { stdio: 'ignore' });
         console.log(chalk.green('Local Repository Initialized'));
+        utils.updateProgress({ gitInit: true });
         // Clear the Screen after two seconds
         await utils.sleep(2000);
         console.clear();

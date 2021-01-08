@@ -4,12 +4,16 @@
     "description": "A CLI Based Application to help you learn Git.",
     "main": "./src/index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "exec": "node ./src/index.js",
+        "lint": "eslint . --ext .ts"
     },
     "author": "Arsalan Khattak",
     "license": "ISC",
     "devDependencies": {
-        "@types/node": "^14.14.14"
+        "@types/node": "^14.14.14",
+        "@typescript-eslint/eslint-plugin": "^4.12.0",
+        "@typescript-eslint/parser": "^4.12.0",
+        "eslint": "^7.17.0"
     },
     "dependencies": {
         "chalk": "^4.1.0",
