@@ -30,7 +30,10 @@ module.exports = function folderChecker() {
                 await commands.gitInit();
             }
             if (!progress.gitFlow) {
-                definition.gitFlow();
+                await definition.gitFlow();
+            }
+            if(!progress.gitStage) {
+                definition.gitStage();
             }
         }
     });

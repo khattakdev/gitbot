@@ -1,7 +1,9 @@
 import chalk = require('chalk');
 import fs = require('fs');
-import util = require('util');
-const path = require('path');
+import path = require('path');
+import { rl as readline } from './commands';
+import { promisify } from 'util';
+
 const progressFile = path.resolve(process.cwd(), './.progress.json');
 
 function wrongInputCommand(errMessage: string) {
@@ -32,12 +34,18 @@ function updateProgress(progress: { [prop: string]: boolean }) {
 
     fs.writeFileSync(progressFile, JSON.stringify(updatedProgress));
 }
-// Create a new Object with up to date values
-// Update the progress.json
+
+async function takeUserInput(question: string) {
+    readline.resume();
+    await promisify(readline.question)(question);
+    readline.pause();
+}
 export {
+    progressFile,
     wrongInputCommand,
     sleep,
     checkForProgressFile,
     getProgress,
-    updateProgress
+    updateProgress,
+    takeUserInput
 };

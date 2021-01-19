@@ -1,5 +1,8 @@
 const chalk = require('chalk');
 const Table = require('cli-table');
+import path = require('path');
+import fs = require('fs');
+import { takeUserInput } from './utils';
 
 function gitInit() {
     console.log(chalk.bgGreen.black('GIT:'));
@@ -10,14 +13,9 @@ function gitInit() {
     console.log(
         'The first thing to do is to create a git reposity. Since you are already in an empty folder, we will now convert this to a Git local repository.'
     );
-
-    // console.log(
-    //     'To Create a local repository, type: ',
-    //     chalk.bgWhite.black('git init')
-    // );
 }
 
-function gitFlow() {
+async function gitFlow() {
     console.log('\n\n\n');
     console.log(chalk.bgGreen.black('GIT FLOW:'));
     console.log(
@@ -94,6 +92,38 @@ function gitFlow() {
             'stagging Area'
         )} to ${chalk.bold('working directory')})`
     );
+
+    await takeUserInput(`Press enter ↵ to continue... \n`);
 }
 
-export { gitInit, gitFlow };
+async function gitStage() {
+    console.clear();
+    console.log(chalk.bgGreen.black('GIT Stage:'));
+    console.log(
+        `Well done! Let's now try to move some files from ${chalk.bold(
+            'working directory'
+        )} to ${chalk.bold('stagging area')}`
+    );
+    console.log(
+        `The folder is empty right now, we need to have atleast file to move to stagging area.`
+    );
+    fs.writeFileSync(path.resolve(process.cwd(), './index.html'), '');
+    console.log(
+        `For that purpose, ${chalk.bold(
+            'index.html'
+        )} has been created for you automatically.`
+    );
+    console.log(
+        `Now, let's make some changes to the file. You can write anything there, but let's have some valid HTML content.`
+    );
+    console.log(
+        `Open the ${chalk.bold('index.html')} and write ${chalk.bold(
+            '<h1>Hello World!<h1>'
+        )} and save the file.`
+    );
+    await takeUserInput(`Once done, Press enter ↵ to continue... \n`);
+
+    console.log(`Great, it's time to move the file to stagging area.`);
+}
+
+export { gitInit, gitFlow, gitStage };

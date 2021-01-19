@@ -28,11 +28,29 @@ async function gitInit() {
         // Clear the Screen after two seconds
         await utils.sleep(2000);
         console.clear();
-        rl.close();
+        rl.pause();
     } else {
         utils.wrongInputCommand();
         await gitInit();
     }
 }
 
-export { gitInit };
+async function gitStage() {
+    const answer = await promisify(rl.question)(
+        `To move files, type: ${chalk.bgWhite.black('git add index.html')}\n`
+    );
+    if (answer == 'git add index.html') {
+        execSync('git add index.html', { stdio: 'ignore' });
+        console.log(chalk.green('File moved to stagging area'));
+        utils.updateProgress({ gitInit: true });
+        // Clear the Screen after two seconds
+        await utils.sleep(2000);
+        console.clear();
+        rl.close();
+    } else {
+        utils.wrongInputCommand();
+        await gitStage();
+    }
+}
+
+export { gitInit, rl };
