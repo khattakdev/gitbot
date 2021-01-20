@@ -38,6 +38,12 @@ module.exports = function folderChecker() {
             if (!progress.stage) {
                 await commands.gitStage();
             }
+            console.log(progress.commit);
+            if (!progress.commit) {
+                console.log('Git Commit');
+                definition.gitCommit();
+                await commands.gitCommit();
+            }
         }
     });
 };

@@ -133,4 +133,19 @@ async function gitStage() {
     console.log(`Great, it's time to move the file to stagging area.`);
 }
 
-export { gitInit, gitFlow, gitStage };
+async function gitCommit() {
+    console.clear();
+    console.log(chalk.bgGreen.black('GIT Commit:'));
+    console.log(
+        `Wuhuu! You're doing great. You were able to move a file from ${chalk.bold(
+            'working directory'
+        )} to ${chalk.bold(
+            'stagging area'
+        )}. It's now time to move that same file to ${chalk.bold(
+            'local repository'
+        )} `
+    );
+    //TODO: If user deletes index.html, restore it.
+}
+
+export { gitInit, gitFlow, gitStage, gitCommit };

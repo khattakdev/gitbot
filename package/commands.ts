@@ -39,7 +39,7 @@ async function gitStage() {
     console.clear();
     console.log(chalk.bgGreen.black('GIT Stage:'));
     const answer = await promisify(rl.question)(
-        `To move files, type: ${chalk.bgWhite.black('git add index.html')}\n`
+        `To move file(s), type: ${chalk.bgWhite.black('git add index.html')}\n`
     );
     if (answer == 'git add index.html') {
         execSync('git add index.html', { stdio: 'ignore' });
@@ -54,5 +54,24 @@ async function gitStage() {
         await gitStage();
     }
 }
+async function gitCommit() {
+    const answer = await promisify(rl.question)(
+        `To move file(s), type: ${chalk.bgWhite.black(
+            'git commit -m "first commit"'
+        )}\n`
+    );
+    if (answer == `git commit -m "first commit"`) {
+        execSync(answer, { stdio: 'ignore' });
+        console.log(chalk.green('File moved to local repository'));
+        utils.updateProgress({ stage: true });
+        // Clear the Screen after two seconds
+        await utils.sleep(2000);
+        console.clear();
+        rl.close();
+    } else {
+        utils.wrongInputCommand();
+        await gitCommit();
+    }
+}
 
-export { gitInit, gitStage, rl };
+export { rl, gitInit, gitStage, gitCommit };
