@@ -2,7 +2,11 @@ const chalk = require('chalk');
 const Table = require('cli-table');
 import path = require('path');
 import fs = require('fs');
-import { takeUserInput } from './utils';
+import {
+    updateProgress,
+    takeUserInput,
+    waitWhileFileisModified
+} from './utils';
 
 function gitInit() {
     console.log(chalk.bgGreen.black('GIT:'));
@@ -94,9 +98,11 @@ async function gitFlow() {
     );
 
     await takeUserInput(`Press enter ↵ to continue... \n`);
+    updateProgress({ flow: true });
 }
 
 async function gitStage() {
+    const indexPath = path.resolve(process.cwd(), './index.html');
     console.clear();
     console.log(chalk.bgGreen.black('GIT Stage:'));
     console.log(
@@ -107,7 +113,7 @@ async function gitStage() {
     console.log(
         `The folder is empty right now, we need to have atleast file to move to stagging area.`
     );
-    fs.writeFileSync(path.resolve(process.cwd(), './index.html'), '');
+    fs.writeFileSync(indexPath, '');
     console.log(
         `For that purpose, ${chalk.bold(
             'index.html'
@@ -121,8 +127,9 @@ async function gitStage() {
             '<h1>Hello World!<h1>'
         )} and save the file.`
     );
-    await takeUserInput(`Once done, Press enter ↵ to continue... \n`);
 
+    await waitWhileFileisModified(indexPath);
+    updateProgress({ stageFile: true });
     console.log(`Great, it's time to move the file to stagging area.`);
 }
 

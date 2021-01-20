@@ -21,19 +21,22 @@ module.exports = function folderChecker() {
         }
 
         // If there are some extra files
-        if (files.length > 1 && !progress.gitInit) {
+        if (files.length > 1 && !progress.init) {
             console.log(chalk.yellow('OOPS! Please use an empty Folder'));
             process.exit(0);
         } else {
-            if (!progress.gitInit) {
+            if (!progress.init) {
                 definition.gitInit();
                 await commands.gitInit();
             }
-            if (!progress.gitFlow) {
+            if (!progress.flow) {
                 await definition.gitFlow();
             }
-            if(!progress.gitStage) {
-                definition.gitStage();
+            if (!progress.stageFile) {
+                await definition.gitStage();
+            }
+            if (!progress.stage) {
+                await commands.gitStage();
             }
         }
     });

@@ -5,6 +5,16 @@ import { rl as readline } from './commands';
 import { promisify } from 'util';
 
 const progressFile = path.resolve(process.cwd(), './.progress.json');
+const progress = {
+    init: false,
+    flow: false,
+    stageFile: false,
+    stage: false,
+    commit: false,
+    remoteRepo: false,
+    pushToRemote: false,
+    pullFromRemote: false
+};
 
 function wrongInputCommand(errMessage: string) {
     console.log();
@@ -18,7 +28,6 @@ function sleep(ms: number) {
 }
 
 function checkForProgressFile() {
-    const progress = { gitInit: false, gitFlow: false, gitStage: false };
     if (!fs.existsSync(progressFile)) {
         fs.writeFileSync(progressFile, JSON.stringify(progress));
     }
@@ -40,6 +49,17 @@ async function takeUserInput(question: string) {
     await promisify(readline.question)(question);
     readline.pause();
 }
+
+async function waitWhileFileisModified(indexPath: string) {
+    let indexFileContentLength: number;
+
+    do {
+        await takeUserInput(`Once done, Press enter ↵ to continue... \n`);
+
+        const indexFileContent = fs.readFileSync(indexPath, 'utf-8');
+        indexFileContentLength = indexFileContent.trim().length;
+    } while (indexFileContentLength <= 0);
+}
 export {
     progressFile,
     wrongInputCommand,
@@ -47,5 +67,6 @@ export {
     checkForProgressFile,
     getProgress,
     updateProgress,
-    takeUserInput
+    takeUserInput,
+    waitWhileFileisModified
 };

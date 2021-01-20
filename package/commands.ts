@@ -24,7 +24,7 @@ async function gitInit() {
     if (answer == 'git init') {
         execSync('git init', { stdio: 'ignore' });
         console.log(chalk.green('Local Repository Initialized'));
-        utils.updateProgress({ gitInit: true });
+        utils.updateProgress({ init: true });
         // Clear the Screen after two seconds
         await utils.sleep(2000);
         console.clear();
@@ -36,13 +36,15 @@ async function gitInit() {
 }
 
 async function gitStage() {
+    console.clear();
+    console.log(chalk.bgGreen.black('GIT Stage:'));
     const answer = await promisify(rl.question)(
         `To move files, type: ${chalk.bgWhite.black('git add index.html')}\n`
     );
     if (answer == 'git add index.html') {
         execSync('git add index.html', { stdio: 'ignore' });
         console.log(chalk.green('File moved to stagging area'));
-        utils.updateProgress({ gitInit: true });
+        utils.updateProgress({ stage: true });
         // Clear the Screen after two seconds
         await utils.sleep(2000);
         console.clear();
@@ -53,4 +55,4 @@ async function gitStage() {
     }
 }
 
-export { gitInit, rl };
+export { gitInit, gitStage, rl };
