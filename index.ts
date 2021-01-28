@@ -7,4 +7,4 @@ async function init() {
 }
 
 init();
-require('./package/init')();
+require('./src/init')();
