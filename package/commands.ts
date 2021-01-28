@@ -48,7 +48,7 @@ async function gitStage() {
         // Clear the Screen after two seconds
         await utils.sleep(2000);
         console.clear();
-        rl.close();
+        rl.pause();
     } else {
         utils.wrongInputCommand();
         await gitStage();
@@ -61,7 +61,11 @@ async function gitCommit() {
         )}\n`
     );
     if (answer == `git commit -m "first commit"`) {
-        execSync(answer, { stdio: 'ignore' });
+        try {
+            execSync('git commit -m "first commit"', { stdio: 'ignore' });
+        } catch (error) {
+            console.log(error.message);
+        }
         console.log(chalk.green('File moved to local repository'));
         utils.updateProgress({ stage: true });
         // Clear the Screen after two seconds

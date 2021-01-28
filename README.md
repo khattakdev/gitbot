@@ -14,20 +14,20 @@
 ## Install
 
 ```sh
-npm install
+npm install -g gitli
 ```
 
 ## Author
 
 👤 **Arsalan Khattak**
 
--   Website: wwww.khattak.dev
+-   Website: [khattak.dev](https://.khattak.dev)
 -   Twitter: [@khattakdev](https://twitter.com/khattakdev)
 -   Github: [@khattak.dev](https://github.com/khattak.dev)
 -   LinkedIn: [@khattakdev](https://linkedin.com/in/khattakdev)
 
 ## Show your support
 
-Give a ⭐️ if this project helped you!
+Give a ⭐️ and follow [@khattak.dev](https://github.com/khattak.dev) if this project helped you!
 
 ---
