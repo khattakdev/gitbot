@@ -1,10 +1,10 @@
-import fs = require('fs');
-const chalk = require('chalk');
-const path = require('path');
-const process = require('process');
-const definition = require('./definition');
-const commands = require('./commands');
-const { checkForProgressFile, getProgress } = require('./utils');
+import fs from 'fs';
+import chalk from 'chalk';
+import path from 'path';
+import process from 'process';
+import * as definition from './definition';
+import * as commands from './commands';
+import { checkForProgressFile, getProgress } from './utils';
 
 module.exports = function folderChecker() {
     const currentDir: string = path.resolve(process.cwd());

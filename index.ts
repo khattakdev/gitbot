@@ -1,10 +1,9 @@
-const chalk = require('chalk');
+import chalk from 'chalk';
 
-async function init() {
+(function init() {
     console.clear();
     console.log();
     console.log(chalk.bgYellowBright.black('Gitli'), 'by Arsalan (khattakdev)');
-}
+})();
 
-init();
 require('./src/init')();

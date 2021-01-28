@@ -1,14 +1,14 @@
-const chalk = require('chalk');
-const Table = require('cli-table');
-import path = require('path');
-import fs = require('fs');
+import chalk from 'chalk';
+import Table from 'cli-table';
+import path from 'path';
+import fs from 'fs';
 import {
     updateProgress,
     waitForResponse,
     waitWhileFileisModified
 } from './utils';
 
-function gitInit() {
+export function gitInit() {
     console.log(chalk.bgGreen.black('GIT:'));
     console.log(
         'Git is a distributed version-control system for tracking changes in any set of files, originally designed for coordinating work among programmers cooperating on source code during software development.\n'
@@ -19,7 +19,7 @@ function gitInit() {
     );
 }
 
-async function gitFlow() {
+export async function gitFlow() {
     console.log('\n\n\n');
     console.log(chalk.bgGreen.black('GIT FLOW:'));
     console.log(
@@ -101,7 +101,7 @@ async function gitFlow() {
     updateProgress({ flow: true });
 }
 
-function gitConfig() {
+export function gitConfig() {
     console.clear();
     console.log(
         `Now before we start moving the files towards local repository, we first need to configure our git locally so it will have details of the commit's author.`
@@ -109,7 +109,7 @@ function gitConfig() {
     console.log('We need to set username and email');
 }
 
-async function gitStage() {
+export async function gitStage() {
     const indexPath = path.resolve(process.cwd(), './index.html');
     console.clear();
     console.log(chalk.bgGreen.black('GIT Stage:'));
@@ -141,7 +141,7 @@ async function gitStage() {
     console.log(`Great, it's time to move the file to stagging area.`);
 }
 
-async function gitCommit() {
+export async function gitCommit() {
     console.clear();
     console.log(chalk.bgGreen.black('GIT Commit:'));
     console.log(
@@ -155,5 +155,3 @@ async function gitCommit() {
     );
     //TODO: If user deletes index.html, restore it.
 }
-
-export { gitInit, gitFlow, gitConfig, gitStage, gitCommit };

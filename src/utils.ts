@@ -3,13 +3,13 @@ import fs from 'fs';
 import path from 'path';
 import { promisify } from 'util';
 import { execSync } from 'child_process';
-const rl = require('readline');
-const readline = rl.createInterface({
+import rl from 'readline';
+const readline: any = rl.createInterface({
     input: process.stdin,
     output: process.stdout
 });
 
-const progressFile = path.resolve(process.cwd(), './.progress.json');
+export const progressFile = path.resolve(process.cwd(), './.progress.json');
 const progress = {
     init: false,
     flow: false,
@@ -22,41 +22,41 @@ const progress = {
     pullFromRemote: false
 };
 
-function wrongInputCommand(errMessage?: string) {
+export function wrongInputCommand(errMessage?: string) {
     console.log();
     console.log(chalk.red(errMessage || 'OOPS! You entered wrong command'));
     console.log();
 }
-function sleep(ms: number) {
+export function sleep(ms: number) {
     return new Promise((resolve) => {
         setTimeout(resolve, ms);
     });
 }
 
-function checkForProgressFile() {
+export function checkForProgressFile() {
     if (!fs.existsSync(progressFile)) {
         fs.writeFileSync(progressFile, JSON.stringify(progress));
     }
 }
 
-function getProgress() {
+export function getProgress() {
     return JSON.parse(fs.readFileSync(progressFile, 'utf8'));
 }
 
-function updateProgress(progress: { [prop: string]: boolean }) {
+export function updateProgress(progress: { [prop: string]: boolean }) {
     const currentProgress = getProgress();
     const updatedProgress = { ...currentProgress, ...progress };
 
     fs.writeFileSync(progressFile, JSON.stringify(updatedProgress));
 }
 
-async function waitForResponse(question: string) {
+export async function waitForResponse(question: string) {
     readline.resume();
     await promisify(readline.question)(question);
     readline.pause();
 }
 
-async function waitWhileFileisModified(indexPath: string) {
+export async function waitWhileFileisModified(indexPath: string) {
     let indexFileContentLength: number;
 
     do {
@@ -67,7 +67,7 @@ async function waitWhileFileisModified(indexPath: string) {
     } while (indexFileContentLength <= 0);
 }
 
-async function takeInput(
+export async function takeInput(
     execCommand: string,
     completionMsg: string,
     progressToUpdate?: { [prop: string]: boolean } | null
@@ -83,15 +83,4 @@ async function takeInput(
     readline.pause();
 }
 
-export {
-    readline,
-    progressFile,
-    wrongInputCommand,
-    sleep,
-    checkForProgressFile,
-    getProgress,
-    takeInput,
-    updateProgress,
-    waitForResponse,
-    waitWhileFileisModified
-};
+export { readline };

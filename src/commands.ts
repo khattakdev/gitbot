@@ -1,6 +1,6 @@
-const chalk = require('chalk');
-const { promisify } = require('util');
-import utils = require('./utils');
+import chalk from 'chalk';
+import { promisify } from 'util';
+import * as utils from './utils';
 import { readline } from './utils';
 
 readline.question[promisify.custom] = (question: string) => {
@@ -9,7 +9,7 @@ readline.question[promisify.custom] = (question: string) => {
     });
 };
 
-async function gitInit() {
+export async function gitInit() {
     const answer = await promisify(readline.question)(
         `To Create a local repository, type: ${chalk.bgWhite.black(
             'git init'
@@ -25,7 +25,7 @@ async function gitInit() {
     }
 }
 
-async function gitConfig() {
+export async function gitConfig() {
     console.log(chalk.bgGreen.black('GIT Config:'));
     // Set Username
     const username = await promisify(readline.question)(
@@ -58,7 +58,7 @@ async function gitConfig() {
     //TODO: Verify email was set correctly
 }
 
-async function gitStage() {
+export async function gitStage() {
     console.clear();
     console.log(chalk.bgGreen.black('GIT Stage:'));
     const answer = await promisify(readline.question)(
@@ -73,7 +73,7 @@ async function gitStage() {
         await gitStage();
     }
 }
-async function gitCommit() {
+export async function gitCommit() {
     const answer = await promisify(readline.question)(
         `To move file(s), type: ${chalk.bgWhite.black(
             'git commit -m "first commit"'
@@ -89,6 +89,6 @@ async function gitCommit() {
     }
 }
 
-export { readline, gitInit, gitConfig, gitStage, gitCommit };
+export { readline };
 
 // 122
