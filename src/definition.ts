@@ -4,7 +4,7 @@ import path = require('path');
 import fs = require('fs');
 import {
     updateProgress,
-    takeUserInput,
+    waitForResponse,
     waitWhileFileisModified
 } from './utils';
 
@@ -97,7 +97,7 @@ async function gitFlow() {
         )} to ${chalk.bold('working directory')})`
     );
 
-    await takeUserInput(`Press enter ↵ to continue... \n`);
+    await waitForResponse(`Press enter ↵ to continue... \n`);
     updateProgress({ flow: true });
 }
 

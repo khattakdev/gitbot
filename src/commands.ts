@@ -1,34 +1,24 @@
-import { execSync } from 'child_process';
-
-const readline = require('readline');
 const chalk = require('chalk');
 const { promisify } = require('util');
-const utils = require('./utils');
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+import utils = require('./utils');
+import { readline } from './utils';
 
-rl.question[promisify.custom] = (question: string) => {
+readline.question[promisify.custom] = (question: string) => {
     return new Promise((resolve) => {
-        rl.question(question, resolve);
+        readline.question(question, resolve);
     });
 };
 
 async function gitInit() {
-    const answer = await promisify(rl.question)(
+    const answer = await promisify(readline.question)(
         `To Create a local repository, type: ${chalk.bgWhite.black(
             'git init'
         )}\n`
     );
     if (answer == 'git init') {
-        execSync('git init', { stdio: 'ignore' });
-        console.log(chalk.green('Local Repository Initialized'));
-        utils.updateProgress({ init: true });
-        // Clear the Screen after two seconds
-        await utils.sleep(2000);
-        console.clear();
-        rl.pause();
+        await utils.takeInput(answer, 'Local Repository Initialized', {
+            init: true
+        });
     } else {
         utils.wrongInputCommand();
         await gitInit();
@@ -38,89 +28,67 @@ async function gitInit() {
 async function gitConfig() {
     console.log(chalk.bgGreen.black('GIT Config:'));
     // Set Username
-    const username = await promisify(rl.question)(
+    const username = await promisify(readline.question)(
         `To set username, type: ${chalk.bgWhite.black(
             `git config user.name "FIRST_NAME LAST_NAME"`
         )}\n`
     );
     if (username.includes('git config user.name')) {
-        execSync(username, { stdio: 'ignore' });
-        console.log(chalk.green('Username set successfully'));
-        utils.updateProgress({ stage: true });
-        // Clear the Screen after two seconds
-        await utils.sleep(2000);
-        console.clear();
-        rl.pause();
+        await utils.takeInput(username, 'Username set successfully');
     } else {
-        console.log('WRONG COMMAND');
         utils.wrongInputCommand();
         await gitConfig();
     }
     //TODO: Verify name was set correctly
     // Set Email
-    const email = await promisify(rl.question)(
+    const email = await promisify(readline.question)(
         `To set email, type: ${chalk.bgWhite.black(
             `git config user.email "MY_NAME@example.com"`
         )}\n`
     );
     if (email.includes('git config user.email')) {
-        execSync(email, { stdio: 'ignore' });
-        console.log(chalk.green('Email set successfully'));
-        utils.updateProgress({ stage: true });
-        // Clear the Screen after two seconds
-        await utils.sleep(2000);
-        console.clear();
-        rl.pause();
+        await utils.takeInput(email, 'Email set successfully', {
+            config: true
+        }); //TODO: Change config to true after verficiation of name and username
     } else {
         utils.wrongInputCommand();
         await gitConfig();
     }
 
-    execSync('git config --list');
     //TODO: Verify email was set correctly
 }
 
 async function gitStage() {
     console.clear();
     console.log(chalk.bgGreen.black('GIT Stage:'));
-    const answer = await promisify(rl.question)(
+    const answer = await promisify(readline.question)(
         `To move file(s), type: ${chalk.bgWhite.black('git add index.html')}\n`
     );
     if (answer == 'git add index.html') {
-        execSync('git add index.html', { stdio: 'ignore' });
-        console.log(chalk.green('File moved to stagging area'));
-        utils.updateProgress({ stage: true });
-        // Clear the Screen after two seconds
-        await utils.sleep(2000);
-        console.clear();
-        rl.pause();
+        await utils.takeInput(answer, 'File moved to stagging area', {
+            stage: true
+        });
     } else {
         utils.wrongInputCommand();
         await gitStage();
     }
 }
 async function gitCommit() {
-    const answer = await promisify(rl.question)(
+    const answer = await promisify(readline.question)(
         `To move file(s), type: ${chalk.bgWhite.black(
             'git commit -m "first commit"'
         )}\n`
     );
     if (answer == `git commit -m "first commit"`) {
-        try {
-            execSync('git commit -m "first commit"', { stdio: 'ignore' });
-        } catch (error) {
-            console.log(error.message);
-        }
-        console.log(chalk.green('File moved to local repository'));
-        utils.updateProgress({ stage: true });
-        // Clear the Screen after two seconds
-        await utils.sleep(2000);
-        console.clear();
-        rl.close();
+        await utils.takeInput(answer, 'File moved to stagging area', {
+            stage: true
+        });
     } else {
         utils.wrongInputCommand();
         await gitCommit();
     }
 }
 
-export { rl, gitInit, gitConfig, gitStage, gitCommit };
+export { readline, gitInit, gitConfig, gitStage, gitCommit };
+
+// 122

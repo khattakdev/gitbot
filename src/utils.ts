@@ -1,8 +1,13 @@
-import chalk = require('chalk');
-import fs = require('fs');
-import path = require('path');
-import { rl as readline } from './commands';
+import chalk from 'chalk';
+import fs from 'fs';
+import path from 'path';
 import { promisify } from 'util';
+import { execSync } from 'child_process';
+const rl = require('readline');
+const readline = rl.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 
 const progressFile = path.resolve(process.cwd(), './.progress.json');
 const progress = {
@@ -17,7 +22,7 @@ const progress = {
     pullFromRemote: false
 };
 
-function wrongInputCommand(errMessage: string) {
+function wrongInputCommand(errMessage?: string) {
     console.log();
     console.log(chalk.red(errMessage || 'OOPS! You entered wrong command'));
     console.log();
@@ -45,7 +50,7 @@ function updateProgress(progress: { [prop: string]: boolean }) {
     fs.writeFileSync(progressFile, JSON.stringify(updatedProgress));
 }
 
-async function takeUserInput(question: string) {
+async function waitForResponse(question: string) {
     readline.resume();
     await promisify(readline.question)(question);
     readline.pause();
@@ -55,19 +60,38 @@ async function waitWhileFileisModified(indexPath: string) {
     let indexFileContentLength: number;
 
     do {
-        await takeUserInput(`Once done, Press enter ↵ to continue... \n`);
+        await waitForResponse(`Once done, Press enter ↵ to continue... \n`);
 
         const indexFileContent = fs.readFileSync(indexPath, 'utf-8');
         indexFileContentLength = indexFileContent.trim().length;
     } while (indexFileContentLength <= 0);
 }
+
+async function takeInput(
+    execCommand: string,
+    completionMsg: string,
+    progressToUpdate?: { [prop: string]: boolean } | null
+) {
+    execSync(execCommand, { encoding: 'utf8' });
+    console.log(chalk.green(completionMsg));
+    if (progressToUpdate) {
+        updateProgress(progressToUpdate);
+    }
+    // Clear the Screen after two seconds
+    await sleep(2000);
+    console.clear();
+    readline.pause();
+}
+
 export {
+    readline,
     progressFile,
     wrongInputCommand,
     sleep,
     checkForProgressFile,
     getProgress,
+    takeInput,
     updateProgress,
-    takeUserInput,
+    waitForResponse,
     waitWhileFileisModified
 };
