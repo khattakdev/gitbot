@@ -1,14 +1,17 @@
 {
-    "name": "gitli",
+    "name": "git-bot",
     "version": "1.0.0",
-    "description": "A CLI Based Application to help you learn Git.",
-    "main": "./src/index.js",
+    "description": "A CLI Based Application to help you learn Git and GitHub.",
+    "main": "index.js",
+    "bin": {
+        "git-bot": "dist/index.js"
+    },
     "scripts": {
         "exec": "node ./src/index.js",
         "lint": "eslint . --ext .ts"
     },
     "author": "Arsalan Khattak",
-    "license": "ISC",
+    "license": "MIT",
     "devDependencies": {
         "@types/cli-table": "^0.3.0",
         "@types/node": "^14.14.14",
