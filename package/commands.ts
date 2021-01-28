@@ -35,6 +35,51 @@ async function gitInit() {
     }
 }
 
+async function gitConfig() {
+    console.log(chalk.bgGreen.black('GIT Config:'));
+    // Set Username
+    const username = await promisify(rl.question)(
+        `To set username, type: ${chalk.bgWhite.black(
+            `git config user.name "FIRST_NAME LAST_NAME"`
+        )}\n`
+    );
+    if (username.includes('git config user.name')) {
+        execSync(username, { stdio: 'ignore' });
+        console.log(chalk.green('Username set successfully'));
+        utils.updateProgress({ stage: true });
+        // Clear the Screen after two seconds
+        await utils.sleep(2000);
+        console.clear();
+        rl.pause();
+    } else {
+        console.log('WRONG COMMAND');
+        utils.wrongInputCommand();
+        await gitConfig();
+    }
+    //TODO: Verify name was set correctly
+    // Set Email
+    const email = await promisify(rl.question)(
+        `To set email, type: ${chalk.bgWhite.black(
+            `git config user.email "MY_NAME@example.com"`
+        )}\n`
+    );
+    if (email.includes('git config user.email')) {
+        execSync(email, { stdio: 'ignore' });
+        console.log(chalk.green('Email set successfully'));
+        utils.updateProgress({ stage: true });
+        // Clear the Screen after two seconds
+        await utils.sleep(2000);
+        console.clear();
+        rl.pause();
+    } else {
+        utils.wrongInputCommand();
+        await gitConfig();
+    }
+
+    execSync('git config --list');
+    //TODO: Verify email was set correctly
+}
+
 async function gitStage() {
     console.clear();
     console.log(chalk.bgGreen.black('GIT Stage:'));
@@ -78,4 +123,4 @@ async function gitCommit() {
     }
 }
 
-export { rl, gitInit, gitStage, gitCommit };
+export { rl, gitInit, gitConfig, gitStage, gitCommit };

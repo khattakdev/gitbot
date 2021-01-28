@@ -8,7 +8,8 @@ const progressFile = path.resolve(process.cwd(), './.progress.json');
 const progress = {
     init: false,
     flow: false,
-    stageFile: false,
+    config: false,
+    stageDefine: false,
     stage: false,
     commit: false,
     remoteRepo: false,

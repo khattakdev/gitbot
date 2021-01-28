@@ -101,6 +101,14 @@ async function gitFlow() {
     updateProgress({ flow: true });
 }
 
+function gitConfig() {
+    console.clear();
+    console.log(
+        `Now before we start moving the files towards local repository, we first need to configure our git locally so it will have details of the commit's author.`
+    );
+    console.log('We need to set username and email');
+}
+
 async function gitStage() {
     const indexPath = path.resolve(process.cwd(), './index.html');
     console.clear();
@@ -129,7 +137,7 @@ async function gitStage() {
     );
 
     await waitWhileFileisModified(indexPath);
-    updateProgress({ stageFile: true });
+    updateProgress({ stageDefine: true });
     console.log(`Great, it's time to move the file to stagging area.`);
 }
 
@@ -148,4 +156,4 @@ async function gitCommit() {
     //TODO: If user deletes index.html, restore it.
 }
 
-export { gitInit, gitFlow, gitStage, gitCommit };
+export { gitInit, gitFlow, gitConfig, gitStage, gitCommit };

@@ -32,7 +32,11 @@ module.exports = function folderChecker() {
             if (!progress.flow) {
                 await definition.gitFlow();
             }
-            if (!progress.stageFile) {
+            if (!progress.config) {
+                definition.gitConfig();
+                await commands.gitConfig();
+            }
+            if (!progress.stageDefine) {
                 await definition.gitStage();
             }
             if (!progress.stage) {
