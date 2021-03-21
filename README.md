@@ -17,6 +17,14 @@
 npm install -g @khattakdev/gitli
 ```
 
+## Usage
+
+Open an empty folder in your terminal, type:
+
+```sh
+git-bot
+```
+
 ## Author
 
 👤 **Arsalan Khattak**
