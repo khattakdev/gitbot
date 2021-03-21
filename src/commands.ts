@@ -80,7 +80,7 @@ export async function gitCommit() {
         )}\n`
     );
     if (answer == `git commit -m "first commit"`) {
-        await utils.takeInput(answer, 'File moved to stagging area', {
+        await utils.takeInput(answer, 'File moved to local repo', {
             stage: true
         });
     } else {

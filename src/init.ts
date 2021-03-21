@@ -11,7 +11,7 @@ module.exports = function folderChecker() {
 
     checkForProgressFile();
     const progress = getProgress();
-    console.log(progress);
+
     fs.readdir(currentDir, async (err, files) => {
         console.log(files);
         if (err) {
@@ -23,6 +23,12 @@ module.exports = function folderChecker() {
         // If there are some extra files
         if (files.length > 1 && !progress.init) {
             console.log(chalk.yellow('OOPS! Please use an empty Folder'));
+            console.log(
+                chalk.yellow(
+                    'Try to remove everyting from the folder, including hidden files/folders'
+                )
+            );
+            // Ask user to clear the folder
             process.exit(0);
         } else {
             if (!progress.init) {
@@ -44,7 +50,6 @@ module.exports = function folderChecker() {
             }
             console.log(progress.commit);
             if (!progress.commit) {
-                console.log('Git Commit');
                 definition.gitCommit();
                 await commands.gitCommit();
             }
