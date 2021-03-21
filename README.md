@@ -36,6 +36,6 @@ git-bot
 
 ## Show your support
 
-Give a ⭐️ and follow [@khattak.dev](https://github.com/khattak.dev) if this project helped you!
+Give a ⭐️ and follow [@khattakdev](https://github.com/khattakdev) if this project helped you!
 
 ---
