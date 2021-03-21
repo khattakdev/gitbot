@@ -7,7 +7,7 @@
         "git-bot": "dist/index.js"
     },
     "scripts": {
-        "exec": "node ./src/index.js",
+        "exec": "node ./dist/index.js",
         "lint": "eslint . --ext .ts"
     },
     "author": "Arsalan Khattak",
