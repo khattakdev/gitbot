@@ -117,6 +117,7 @@ dist
 
 # VSCode extensions
 todo
+.todo
 empty
 
 #project ocnfigurations
