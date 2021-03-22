@@ -52,6 +52,11 @@ module.exports = function folderChecker() {
             if (!progress.commit) {
                 definition.gitCommit();
                 await commands.gitCommit();
+
+                console.log(
+                    chalk.green('Congratulations!'),
+                    "You've mastered the basics"
+                );
             }
         }
     });

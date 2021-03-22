@@ -117,9 +117,13 @@ dist
 
 # VSCode extensions
 todo
+.todo
 empty
 
 #project ocnfigurations
 .eslintrc
 .prettierrc.json
 tsconfig.json
+src
+*.map.js
+*.ts
