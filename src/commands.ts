@@ -30,7 +30,7 @@ export async function gitConfig() {
     // Set Username
     const username = await promisify(readline.question)(
         `To set username, type: ${chalk.bgWhite.black(
-            `git config user.name "FIRST_NAME LAST_NAME"`
+            `git config user.name --global "FIRST_NAME LAST_NAME"`
         )}\n`
     );
     if (username.includes('git config user.name')) {
@@ -40,10 +40,9 @@ export async function gitConfig() {
         await gitConfig();
     }
     //TODO: Verify name was set correctly
-    // Set Email
     const email = await promisify(readline.question)(
         `To set email, type: ${chalk.bgWhite.black(
-            `git config user.email "MY_NAME@example.com"`
+            `git config user.email --global "MY_NAME@example.com"`
         )}\n`
     );
     if (email.includes('git config user.email')) {
@@ -90,5 +89,3 @@ export async function gitCommit() {
 }
 
 export { readline };
-
-// 122

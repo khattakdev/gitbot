@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to gitli 👋</h1>
+<h1 align="center">Welcome to Gitbot 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
   <a href="#" target="_blank">
@@ -14,7 +14,15 @@
 ## Install
 
 ```sh
-npm install -g gitli
+npm install -g @khattakdev/gitli
+```
+
+## Usage
+
+Open an empty folder in your terminal, type:
+
+```sh
+git-bot
 ```
 
 ## Author
@@ -28,6 +36,6 @@ npm install -g gitli
 
 ## Show your support
 
-Give a ⭐️ and follow [@khattak.dev](https://github.com/khattak.dev) if this project helped you!
+Give a ⭐️ and follow [@khattakdev](https://github.com/khattakdev) if this project helped you!
 
 ---
