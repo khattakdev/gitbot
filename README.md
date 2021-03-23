@@ -36,7 +36,7 @@ git-bot
 
 ## License
 
-[MIT]("./LICENSE")
+[MIT](LICENSE)
 
 ## Show your support
 
