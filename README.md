@@ -34,6 +34,10 @@ git-bot
 -   Github: [@khattak.dev](https://github.com/khattak.dev)
 -   LinkedIn: [@khattakdev](https://linkedin.com/in/khattakdev)
 
+## License
+
+[MIT]("./LICENSE")
+
 ## Show your support
 
 Give a ⭐️ and follow [@khattakdev](https://github.com/khattakdev) if this project helped you!
