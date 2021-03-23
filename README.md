@@ -29,9 +29,9 @@ git-bot
 
 👤 **Arsalan Khattak**
 
--   Website: [khattak.dev](https://.khattak.dev)
+-   Website: [khattak.dev](https://khattak.dev)
 -   Twitter: [@khattakdev](https://twitter.com/khattakdev)
--   Github: [@khattak.dev](https://github.com/khattak.dev)
+-   Github: [@khattak.dev](https://github.com/khattakdev)
 -   LinkedIn: [@khattakdev](https://linkedin.com/in/khattakdev)
 
 ## License
