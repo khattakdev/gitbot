@@ -118,6 +118,6 @@ dist
 .pnp.*
 
 # VSCode extensions
-todo
-.todo
+todo.md
+.todo.md
 empty
