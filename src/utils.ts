@@ -72,14 +72,12 @@ export async function waitWhileFileisModified(indexPath: string) {
 
 export async function takeInput(
     execCommand: string,
-    completionMsg: string,
+    completionMsg?: string,
     progressToUpdate?: { [prop: string]: boolean } | null
 ) {
     execSync(execCommand, { encoding: 'utf8' });
-    console.log(chalk.green(completionMsg));
-    if (progressToUpdate) {
-        updateProgress(progressToUpdate);
-    }
+    if (completionMsg) console.log(chalk.green(completionMsg));
+    if (progressToUpdate) updateProgress(progressToUpdate);
     // Clear the Screen after two seconds
     await sleep(2000);
     console.clear();

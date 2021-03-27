@@ -2,6 +2,7 @@ import chalk from 'chalk';
 import Table from 'cli-table';
 import path from 'path';
 import fs from 'fs';
+import { execSync } from 'child_process';
 import {
     updateProgress,
     waitForResponse,
@@ -107,6 +108,11 @@ export function gitConfig() {
         `Now before we start moving the files towards local repository, we first need to configure our git locally so it will have details of the commit's author.`
     );
     console.log('We need to set username and email');
+    console.log(
+        chalk.yellowBright(
+            'Avoid --global if you want the configuration for this repository only'
+        )
+    );
 }
 
 export async function gitStage() {
