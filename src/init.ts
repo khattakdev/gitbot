@@ -20,7 +20,7 @@ module.exports = function folderChecker() {
         }
 
         // If there are some extra files
-        if (files.length > 1 && !progress.init) {
+        if (files.length > 1 && !progress.init && files[1] != 'node_modules') {
             console.log(chalk.yellow('OOPS! Please use an empty Folder'));
             console.log(
                 chalk.yellow(

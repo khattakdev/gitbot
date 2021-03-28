@@ -127,3 +127,7 @@ tsconfig.json
 src
 *.map.js
 *.ts
+
+
+#extra
+preview.gif

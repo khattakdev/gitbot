@@ -4,7 +4,7 @@
     "description": "A CLI Based Application to help you learn Git and GitHub.",
     "main": "index.js",
     "bin": {
-        "git-bot": "dist/index.js"
+        "gitbot": "dist/index.js"
     },
     "scripts": {
         "exec": "node ./dist/index.js",

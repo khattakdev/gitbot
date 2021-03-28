@@ -5,6 +5,7 @@ import chalk from 'chalk';
     console.clear();
     console.log();
     console.log(chalk.bgYellowBright.black('Gitli'), 'by Arsalan (khattakdev)');
+    console.log();
 })();
 
 require('./src/init')();
