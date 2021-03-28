@@ -1,9 +1,8 @@
 import chalk from 'chalk';
 import { promisify } from 'util';
-import { exec, execSync } from 'child_process';
+import { execSync } from 'child_process';
 import * as utils from './utils';
 import { readline } from './utils';
-import { stdout } from 'process';
 
 readline.question[promisify.custom] = (question: string) => {
     return new Promise((resolve) => {

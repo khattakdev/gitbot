@@ -2,7 +2,6 @@ import chalk from 'chalk';
 import Table from 'cli-table';
 import path from 'path';
 import fs from 'fs';
-import { execSync } from 'child_process';
 import {
     updateProgress,
     waitForResponse,
