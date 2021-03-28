@@ -26,7 +26,7 @@ gitbot
 ```
 
 ## Demo
-![Demo](./preview.gif)
+![Demo](https://user-images.githubusercontent.com/37709578/112744394-353f6180-8fb9-11eb-8d75-92aab29564fb.gif)
 ## Author
 
 👤 **Arsalan Khattak**
