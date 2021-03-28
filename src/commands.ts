@@ -1,4 +1,5 @@
 import chalk from 'chalk';
+import fs from 'fs';
 import { promisify } from 'util';
 import { execSync } from 'child_process';
 import * as utils from './utils';
@@ -17,6 +18,11 @@ export async function gitInit() {
         )}\n`
     );
     if (answer == 'git init') {
+        try {
+            fs.writeFileSync('.gitignore', 'node_modules');
+        } catch (error) {
+            console.log(chalk.red(error.message));
+        }
         await utils.takeInput(answer, 'Local Repository Initialized', {
             init: true
         });
