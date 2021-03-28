@@ -116,13 +116,14 @@ dist
 .pnp.*
 
 # VSCode extensions
-todo
-.todo
+todo.md
+.todo.md
 empty
 
 #project ocnfigurations
 .eslintrc
 .prettierrc.json
+.prettierignore
 tsconfig.json
 src
 *.map.js
@@ -130,4 +131,5 @@ src
 
 
 #extra
+LICENSE
 preview.gif
