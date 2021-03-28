@@ -1,5 +1,6 @@
 import chalk from 'chalk';
 import { promisify } from 'util';
+import { execSync } from 'child_process';
 import * as utils from './utils';
 import { readline } from './utils';
 
@@ -27,34 +28,39 @@ export async function gitInit() {
 
 export async function gitConfig() {
     console.log(chalk.bgGreen.black('GIT Config:'));
-    // Set Username
     const username = await promisify(readline.question)(
         `To set username, type: ${chalk.bgWhite.black(
             `git config user.name --global "FIRST_NAME LAST_NAME"`
         )}\n`
     );
-    if (username.includes('git config user.name')) {
-        await utils.takeInput(username, 'Username set successfully');
-    } else {
+
+    await utils.takeInput(username);
+    try {
+        const getUsername = execSync('git config --local --get user.name');
+        const userNameToUTF = Buffer.from(getUsername).toString();
+        console.log(chalk.green('Username set successfully'));
+    } catch (error) {
+        console.log(error.message);
         utils.wrongInputCommand();
         await gitConfig();
     }
-    //TODO: Verify name was set correctly
+
     const email = await promisify(readline.question)(
         `To set email, type: ${chalk.bgWhite.black(
             `git config user.email --global "MY_NAME@example.com"`
         )}\n`
     );
-    if (email.includes('git config user.email')) {
-        await utils.takeInput(email, 'Email set successfully', {
-            config: true
-        }); //TODO: Change config to true after verficiation of name and username
-    } else {
+    await utils.takeInput(email);
+    try {
+        const getEmail = execSync('git config --local --get user.name');
+        const emailToUTF = Buffer.from(getEmail).toString();
+        console.log(chalk.green('Email set successfully'));
+        utils.updateProgress({ config: true });
+    } catch (error) {
+        console.log(error.message);
         utils.wrongInputCommand();
         await gitConfig();
     }
-
-    //TODO: Verify email was set correctly
 }
 
 export async function gitStage() {

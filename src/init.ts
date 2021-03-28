@@ -13,7 +13,6 @@ module.exports = function folderChecker() {
     const progress = getProgress();
 
     fs.readdir(currentDir, async (err, files) => {
-        console.log(files);
         if (err) {
             console.log(chalk.red('OOPS! Something went Wrong'));
             console.log(err.message);

@@ -9,7 +9,8 @@ const readline: any = rl.createInterface({
     output: process.stdout
 });
 
-export const progressFile = path.resolve(process.cwd(), './.progress.json');
+export const progressPath = path.resolve(process.cwd(), './.git');
+export const progressFile = path.resolve(process.cwd(), './.git/progress.json');
 const progress = {
     init: false,
     flow: false,
@@ -34,8 +35,10 @@ export function sleep(ms: number) {
 }
 
 export function checkForProgressFile() {
-    if (!fs.existsSync(progressFile)) {
+    if (!fs.existsSync(progressPath)) {
+        fs.mkdirSync(progressPath);
         fs.writeFileSync(progressFile, JSON.stringify(progress));
+        if (process.platform == 'win32') execSync(`attrib +h ${progressPath}`);
     }
 }
 
@@ -69,14 +72,12 @@ export async function waitWhileFileisModified(indexPath: string) {
 
 export async function takeInput(
     execCommand: string,
-    completionMsg: string,
+    completionMsg?: string,
     progressToUpdate?: { [prop: string]: boolean } | null
 ) {
     execSync(execCommand, { encoding: 'utf8' });
-    console.log(chalk.green(completionMsg));
-    if (progressToUpdate) {
-        updateProgress(progressToUpdate);
-    }
+    if (completionMsg) console.log(chalk.green(completionMsg));
+    if (progressToUpdate) updateProgress(progressToUpdate);
     // Clear the Screen after two seconds
     await sleep(2000);
     console.clear();
