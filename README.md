@@ -14,7 +14,7 @@
 ## Install
 
 ```sh
-npm install -g @khattakdev/gitli
+npm install -g @khattakdev/gitbot
 ```
 
 ## Usage
@@ -22,9 +22,11 @@ npm install -g @khattakdev/gitli
 Open an empty folder in your terminal, type:
 
 ```sh
-git-bot
+gitbot
 ```
 
+## Demo
+![Demo](./preview.gif)
 ## Author
 
 👤 **Arsalan Khattak**
