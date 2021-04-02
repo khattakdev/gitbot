@@ -2,7 +2,7 @@
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
   <a href="#" target="_blank">
-    <img alt="License: ISC" src="https://img.shields.io/badge/License-ISC-yellow.svg" />
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
   </a>
   <a href="https://twitter.com/khattakdev" target="_blank">
     <img alt="Twitter: khattakdev" src="https://img.shields.io/twitter/follow/khattakdev.svg?style=social" />
@@ -11,6 +11,8 @@
 
 > A CLI Based Application to help you learn Git.
 
+## Prerequisite
+You'll need to have [Nodejs](https://nodejs.org/) installed on your system.
 ## Install
 
 ```sh
